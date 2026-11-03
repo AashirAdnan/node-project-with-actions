@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
@@ -12,16 +13,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: CHECKOUT code
+      - name: checkout
         uses: actions/checkout@v4
-
-      - name: running node
-        uses: actions/setup-node@v4
+      - name: node server
+        uses: actions/node@v4
         with:
-          node-version: "20"
-
-      - name: installing node
+          node_version: "20"
+      - name: install dep
         run: npm install
 
-      - name: testing app
+      - name: run app
         run: npm test
