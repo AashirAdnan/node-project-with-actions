@@ -30,3 +30,15 @@ jobs:
         run: echo "this secret says $MY_ENV_VAR"
         env:
           MY_ENV_VAR: ${{secrets.MY_SECRET}}
+
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: running the app
+        run: echo "the app is running"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: building the app
+        run: echo "the app is building"
