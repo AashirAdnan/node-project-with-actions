@@ -43,3 +43,12 @@ jobs:
     steps:
       - name: building the app
         run: echo "the app is building"
+
+      - name: creating a report
+        run: echo "this is a report from $(date)" > report.txt
+
+      - name: uploading the report
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-report
+          path: report.txt
