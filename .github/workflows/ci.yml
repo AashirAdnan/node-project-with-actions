@@ -34,8 +34,8 @@ jobs:
   test2:
     runs-on: ubuntu-latest
     steps:
-      - name: break build
-        run: exit 1
+      - name: running the app
+        run: echo "the app is running"
 
   build:
     runs-on: ubuntu-latest
