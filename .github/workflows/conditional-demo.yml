@@ -1,0 +1,27 @@
+name: conditional-demo
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  always-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: runs on everything
+        run: echo "I run everytime"
+
+  only-main:
+    runs-on: ubuntu-latest
+    if: ${{github.ref == 'ref/heads/main'}}
+    steps:
+      - name: only runs on main
+        run: echo "I only run on main"
+
+  only-pr:
+    runs-on: ubuntu-latest
+    if: ${{github.event_name == 'pull_request'}}
+    steps:
+      - name: only runs on pr
+        run: echo "I only run on pr"
