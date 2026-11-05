@@ -7,48 +7,30 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: CHECKOUT code
+      - name: checkout
         uses: actions/checkout@v4
 
-      - name: running node
+      - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
-      - name: installing node
+      - name: install node
         run: npm install
 
-      - name: testing app
+      - name: run test
         run: npm test
-
-      - name: use this secret
-        run: echo "this secret says $MY_ENV_VAR"
-        env:
-          MY_ENV_VAR: ${{secrets.MY_SECRET}}
 
   test2:
     runs-on: ubuntu-latest
     steps:
-      - name: running the app
-        run: echo "the app is running"
-
-  build:
-    runs-on: ubuntu-latest
-    needs: test2
-    steps:
-      - name: building the app
-        run: echo "the app is building"
-
-      - name: creating a report
-        run: echo "this is a report from $(date)" > report.txt
-
-      - name: uploading the report
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-report
-          path: report.txt
+      - name: making a directory
+        run: mkdir yay!!!
+    needs: test
